@@ -30,7 +30,7 @@ async function moviesForCategories() {
   console.log( categories );
 
   categories.forEach(( category ) => {
-    const searchCategories = document.querySelector( '.section-search-categories .search-categories' )
+    const categoriesPreviewList = document.querySelector( '.section-search-categories .search-categories' )
     const containCategory = document.createElement( 'div' );
     containCategory.classList.add( 'category-container' )
     const categoryName = category.name;
@@ -39,18 +39,19 @@ async function moviesForCategories() {
     containCategory.innerHTML = `
       <h3 id=${ idCategory } class="category-title">${ categoryName }</h3>
     `;
-    searchCategories.appendChild( containCategory );
+    categoriesPreviewList.appendChild( containCategory );
   })
 }
 
 
-//////////////////////////////////> MOVIES TOP RATED
-async function moviesTopRated() {
+//////////////////////////////////> MOVIES TRENDING
+
+async function getMoviesTrending() {
   const { data } = await api( 'movie/now_playing' );
   const movies = data.results;
 
   movies.forEach(( movie ) => {
-    const topRatedSection = document.querySelector( '.section-trending .row-movies' )
+    const trendingMoviesPreviewList = document.querySelector( '.section-trending .row-movies' )
     const containMovie = document.createElement( 'div' );
     containMovie.classList.add( 'contain-movie' );
     const movieImg = ('https://image.tmdb.org/t/p/w300' + movie.poster_path );
@@ -73,19 +74,19 @@ async function moviesTopRated() {
         </div>
       </div>
     `
-    topRatedSection.appendChild( containMovie );
+    trendingMoviesPreviewList.appendChild( containMovie );
   })
 }
 
+//////////////////////////////////> MOVIES POPULARS
 
-//////////////////////////////////> MOVIES POPULARES
-async function moviesPopular() {
+async function getMoviesPopular() {
   const { data } = await api( 'movie/popular' );
-  const movies = data.results;
-  console.log({ data, movies });
+  const moviesPopular = data.results;
+  console.log({ data, moviesPopular });
 
-  movies.forEach(( movie ) => {
-    const popularSection = document.querySelector( '.section-popular .row-movies' )
+  moviesPopular.forEach(( movie ) => {
+    const popularMoviesPreviewList = document.querySelector( '.section-popular .row-movies' )
     const containMovie = document.createElement( 'div' );
     containMovie.classList.add( 'contain-movie' );
     const movieImg = ('https://image.tmdb.org/t/p/w300' + movie.poster_path );
@@ -108,11 +109,11 @@ async function moviesPopular() {
         </div>
       </div>
     `
-    popularSection.appendChild( containMovie );
+    popularMoviesPreviewList.appendChild( containMovie );
   })
 }
 
 
 moviesForCategories();
-moviesTopRated();
-moviesPopular();
+getMoviesTrending();
+getMoviesPopular();

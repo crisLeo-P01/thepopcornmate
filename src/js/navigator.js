@@ -25,13 +25,37 @@ function searchPage() {
 }
 function homePage() {
     console.log( 'HOME!!!' );
+
+    mainPortada.classList.remove( 'inactive' )
+    searchCategoriesSection.classList.remove( 'inactive' )
+    trendingMoviesPreviewList.classList.remove( 'inactive' );
+    popularMoviesPreviewList.classList.remove( 'inactive' );
+    genericSection.classList.add( 'inactive' );
+    movieDetailSection.classList.add( 'inactive' );
+
+    getMoviesTrending();
+    getMoviesPopular();
 }
 function movieDetailPage() {
     console.log( 'movie!!!' );
 }
 function categoriesPage() {
     console.log( 'categories!!!' );
+
+    mainPortada.classList.add( 'inactive' );
+    searchCategoriesSection.classList.add( 'inactive' )
+    trendingMoviesPreviewList.classList.add( 'inactive' );
+    popularMoviesPreviewList.classList.add( 'inactive' );
+    genericSection.classList.remove( 'inactive' );
+    movieDetailSection.classList.add( 'inactive' );
 }
 function movieDetailPage() {
     console.log( 'movie!!!' );
+
+    mainPortada.classList.add( 'inactive' );
+    searchCategoriesSection.classList.add( 'inactive' )
+    trendingMoviesPreviewList.classList.add( 'inactive' );
+    popularMoviesPreviewList.classList.add( 'inactive' );
+    genericSection.classList.add( 'inactive' );
+    movieDetailSection.classList.remove( 'inactive' );
 }
