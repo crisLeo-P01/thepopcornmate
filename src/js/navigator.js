@@ -1,3 +1,11 @@
+btnMoreTrendingMovies.addEventListener( 'click', () => {
+    location.hash = '#search=';
+})
+
+btnMorePopularMovies.addEventListener( 'click', () => {
+    location.hash = '#category=';
+})
+
 window.addEventListener( 'DOMContentLoaded', navigator, false )
 window.addEventListener( 'hashchange', navigator, false )
 

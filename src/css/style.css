@@ -28,6 +28,20 @@ h1, h2 {
   font-size: 14px;
   line-height: 18px;
 }
+.header-movies {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-movies .btn-more {
+  border-radius: 5px;
+  border: none;
+  background-color: var( --bg-yellow );
+  color: var( --color-text );
+  font-family: var( --font-family-noto );
+  font-weight: var( --font-weight-700 );
+  padding: 2px 8px;
+}
 .valoration {
   display: flex;
   align-items: center;
@@ -68,10 +82,10 @@ h1, h2 {
 .row-movies::after {
   content: "";
   position: absolute;
-  top: 0;
+  top: 46px;
   right: 24px;
   width: 200px; /* Ajusta el ancho del difuminado según tus necesidades */
-  height: 100%;
+  height: 86%;
   background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(18, 14, 24, 1) 100%);
   opacity: 1; /* Ajusta la opacidad según tus necesidades */
   transition: opacity 0.3s ease;
