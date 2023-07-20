@@ -1,30 +1,31 @@
 // Sections
-const headerSection = document.querySelector('#header');
-const mainPortada = document.querySelector('#mainPortada');
-const searchCategoriesSection = document.querySelector('#searchCategories');
-const trendingPreviewSection = document.querySelector('#trendingPreview');
-const popularPreviewSection = document.querySelector('#popularPreview');
-const genericSection = document.querySelector('#genericList');
-const movieDetailSection = document.querySelector('#movieDetail');
+const $ = ( id ) => document.querySelector( id );
+const headerSection = $('#header');
+const mainPortada = $('#mainPortada');
+const searchCategoriesSection = $('#searchCategories');
+const trendingPreviewSection = $('#trendingPreview');
+const popularPreviewSection = $('#popularPreview');
+const genericSection = $('#genericList');
+const movieDetailSection = $('#movieDetail');
 
 // Lists & Containers
-const searchForm = document.querySelector('#searchForm');
-const trendingMoviesPreviewList = document.querySelector('.section-trending');
-const popularMoviesPreviewList = document.querySelector('.section-popular');
-const categoriesPreviewList = document.querySelector('.section-search-categories');
-const movieDetailCategoriesList = document.querySelector('#movieDetail .categories-list');
-const relatedMoviesContainer = document.querySelector('.relatedMovies-scrollContainer');
+const searchForm = $('#searchForm');
+const trendingMoviesPreviewList = $('.section-trending .row-movies');
+const popularMoviesPreviewList = $('.section-popular .row-movies');
+const categoriesPreviewList = $('.section-search-categories .search-categories');
+const movieDetailCategoriesList = $('#movieDetail .categories-list');
+const relatedMoviesContainer = $('.relatedMovies-scrollContainer');
 
 // Elements
-const headerTitle = document.querySelector('.header-title');
-const arrowBtn = document.querySelector('.header-arrow');
-const headerCategoryTitle = document.querySelector('.header-title--categoryView');
+const headerTitle = $('.header-title');
+const arrowBtn = $('.header-arrow');
+const headerCategoryTitle = $('.header-title--categoryView');
 
-const searchFormInput = document.querySelector('#searchForm input');
-const searchFormBtn = document.querySelector('#searchBtn');
+const searchFormInput = $('#searchForm input');
+const searchFormBtn = $('#searchBtn');
 
-const trendingBtn = document.querySelector('.trendingPreview-btn');
+const trendingBtn = $('.trendingPreview-btn');
 
-const movieDetailTitle = document.querySelector('.movieDetail-title');
-const movieDetailDescription = document.querySelector('.movieDetail-description');
-const movieDetailScore = document.querySelector('.movieDetail-score');
+const movieDetailTitle = $('.movieDetail-title');
+const movieDetailDescription = $('.movieDetail-description');
+const movieDetailScore = $('.movieDetail-score');

@@ -6,6 +6,10 @@ btnMorePopularMovies.addEventListener( 'click', () => {
     location.hash = '#category=';
 })
 
+searchForm.addEventListener( 'click', () => {
+    location.hash = '#search=';
+})
+
 window.addEventListener( 'DOMContentLoaded', navigator, false )
 window.addEventListener( 'hashchange', navigator, false )
 
@@ -30,14 +34,21 @@ function trendsPage() {
 }
 function searchPage() {
     console.log( 'search!!!' );
+
+    mainPortada.classList.add( 'inactive' )
+    searchCategoriesSection.classList.remove( 'inactive' )
+    trendingPreviewSection.classList.add( 'inactive' );
+    popularPreviewSection.classList.add( 'inactive' );
+    genericSection.classList.remove( 'inactive' );
+    movieDetailSection.classList.add( 'inactive' );
 }
 function homePage() {
     console.log( 'HOME!!!' );
 
     mainPortada.classList.remove( 'inactive' )
     searchCategoriesSection.classList.remove( 'inactive' )
-    trendingMoviesPreviewList.classList.remove( 'inactive' );
-    popularMoviesPreviewList.classList.remove( 'inactive' );
+    trendingPreviewSection.classList.remove( 'inactive' );
+    popularPreviewSection.classList.remove( 'inactive' );
     genericSection.classList.add( 'inactive' );
     movieDetailSection.classList.add( 'inactive' );
 
@@ -52,8 +63,8 @@ function categoriesPage() {
 
     mainPortada.classList.add( 'inactive' );
     searchCategoriesSection.classList.add( 'inactive' )
-    trendingMoviesPreviewList.classList.add( 'inactive' );
-    popularMoviesPreviewList.classList.add( 'inactive' );
+    trendingPreviewSection.classList.add( 'inactive' );
+    popularPreviewSection.classList.add( 'inactive' );
     genericSection.classList.remove( 'inactive' );
     movieDetailSection.classList.add( 'inactive' );
 }
@@ -62,8 +73,8 @@ function movieDetailPage() {
 
     mainPortada.classList.add( 'inactive' );
     searchCategoriesSection.classList.add( 'inactive' )
-    trendingMoviesPreviewList.classList.add( 'inactive' );
-    popularMoviesPreviewList.classList.add( 'inactive' );
+    trendingPreviewSection.classList.add( 'inactive' );
+    popularPreviewSection.classList.add( 'inactive' );
     genericSection.classList.add( 'inactive' );
     movieDetailSection.classList.remove( 'inactive' );
 }
