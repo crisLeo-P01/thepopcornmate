@@ -39,7 +39,7 @@ async function moviesForCategories() {
     categoryTitle.classList.add( 'category-title' );
     categoryTitle.setAttribute( 'id', 'id' + category.id );
     categoryTitle.addEventListener( 'click', () => {
-      location.hash = `#category=${ category.id } - ${ category.name }`;
+      location.hash = `#category=${ category.id }-${ category.name }`;
     });
 
     const categoryTitleText = document.createTextNode( category.name );
@@ -119,6 +119,44 @@ async function getMoviesPopular() {
       </div>
     `
     popularMoviesPreviewList.appendChild( containMovie );
+  })
+}
+
+//////////////////////////////////> MOVIES BY CATEGORY
+
+async function getMoviesByCategory( id ) {
+  const { data } = await api( 'discover/movie', {
+    params: {
+      with_genres: id,
+    }
+  });
+  const movies = data.results;
+
+  categoriesMoviesPreviewList.innerHTML = '';
+  movies.forEach(( movie ) => {
+    const containMovie = document.createElement( 'div' );
+    containMovie.classList.add( 'contain-movie-general' );
+    const movieImg = ('https://image.tmdb.org/t/p/w300' + movie.poster_path );
+    const titleMovie = movie.title;
+    const voteAverage = movie.vote_average;
+
+    containMovie.innerHTML = `
+      <img src=${ movieImg } class="movie-img">
+      <div class="container name-valor-movie d-flex align-items-center">
+        <div class="row flex-column">
+          <div class="col-lg-12">
+            <span class="cartel-name">${ titleMovie }</span>
+          </div>
+          <div class="col-lg-12">
+            <div class="valoration">
+              <img src="./src/images/ico-star.png">
+              <span class="puntuacion-number">${ voteAverage }</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `
+    categoriesMoviesPreviewList.appendChild( containMovie );
   })
 }
 

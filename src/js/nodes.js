@@ -12,6 +12,7 @@ const movieDetailSection = $('#movieDetail');
 const searchForm = $('#searchForm');
 const trendingMoviesPreviewList = $('.section-trending .row-movies');
 const popularMoviesPreviewList = $('.section-popular .row-movies');
+const categoriesMoviesPreviewList = $( '.section-general-movies .row-categories' )
 const categoriesPreviewList = $('.section-search-categories .search-categories');
 const movieDetailCategoriesList = $('#movieDetail .categories-list');
 const relatedMoviesContainer = $('.relatedMovies-scrollContainer');

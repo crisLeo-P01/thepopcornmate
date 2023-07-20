@@ -299,12 +299,13 @@ h1, h2 {
   width: 100%;
   background-color: var(--bg-secondary );
   color: var(--color-text );
-  border-radius: 0 0 6px 6px;
+  border-radius: 0 0 18px 18px;
   padding: 0;
 }
 .contain-movie-general .movie-img {
   max-width: 100%;
   width: inherit;
+  border-radius: 18px 18px 0 0;
 }
 
 
