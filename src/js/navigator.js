@@ -6,8 +6,8 @@ btnMorePopularMovies.addEventListener( 'click', () => {
     location.hash = '#category=';
 })
 
-searchForm.addEventListener( 'click', () => {
-    location.hash = '#search=';
+searchFormBtn.addEventListener( 'click', () => {
+    location.hash = '#search=' + searchFormInput.value;
 })
 
 window.addEventListener( 'DOMContentLoaded', navigator, false )
@@ -26,7 +26,8 @@ function navigator() {
         homePage()
     }
     
-    location.hash
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 }
 
 function trendsPage() {
@@ -41,6 +42,11 @@ function searchPage() {
     popularPreviewSection.classList.add( 'inactive' );
     genericSection.classList.remove( 'inactive' );
     movieDetailSection.classList.add( 'inactive' );
+    headerCategoryTitle.classList.add( 'inactive' );
+
+    //> [ '#search', 'platzi' ]
+    const [ _, query ] = location.hash.split( '=' );
+    getMoviesBySearch( query );
 }
 function homePage() {
     console.log( 'HOME!!!' );
@@ -67,10 +73,13 @@ function categoriesPage() {
     popularPreviewSection.classList.add( 'inactive' );
     genericSection.classList.remove( 'inactive' );
     movieDetailSection.classList.add( 'inactive' );
+    headerCategoryTitle.classList.remove( 'inactive' );
 
     //> [ '#category', 'id-name' ]
     const [ _, categoryData ] = location.hash.split( '=' );
-    const [ categoryId, categoryName ] = categoryData.split( '-' )
+    const [ categoryId, categoryName ] = categoryData.split( '-' );
+
+    headerCategoryTitle.innerHTML = categoryName
 
     getMoviesByCategory( categoryId );
 }
