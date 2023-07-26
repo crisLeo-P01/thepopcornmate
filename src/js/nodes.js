@@ -5,7 +5,7 @@ const mainPortada = $('#mainPortada');
 const searchCategoriesSection = $('#searchCategories');
 const trendingPreviewSection = $('#trendingPreview');
 const popularPreviewSection = $('#popularPreview');
-const genericSection = $('#genericList');
+const genericSection = $('#genericList .row-categories');
 const movieDetailSection = $('#movieDetail');
 
 // Lists & Containers

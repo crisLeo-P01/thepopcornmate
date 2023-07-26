@@ -79,20 +79,6 @@ h1, h2 {
   width: 100%;
   padding-bottom: 14px;
 }
-.row-movies::after {
-  content: "";
-  position: absolute;
-  top: 46px;
-  right: 24px;
-  width: 200px; /* Ajusta el ancho del difuminado según tus necesidades */
-  height: 86%;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(18, 14, 24, 1) 100%);
-  opacity: 1; /* Ajusta la opacidad según tus necesidades */
-  transition: opacity 0.3s ease;
-}
-.row-movies.no-fade::after {
-  opacity: 0;
-}
 .row-movies::-webkit-scrollbar {
   height: 10px;
 }
@@ -113,6 +99,7 @@ h1, h2 {
   color: var( --color-text );
   border-radius: 0 0 6px 6px;
   padding: 0;
+  cursor: pointer;
 }
 .movie-img {
   width: 230px;

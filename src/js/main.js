@@ -16,6 +16,10 @@ function createMovies ( movies, container ) {
   movies.forEach(( movie ) => {
     const containMovie = document.createElement( 'div' );
     containMovie.classList.add( 'contain-movie' );
+    containMovie.addEventListener( 'click', () => {
+      location.hash = '#movie=' + movie.id;
+    })
+
     const movieImg = ('https://image.tmdb.org/t/p/w300' + movie.poster_path );
     const titleMovie = movie.title;
     const voteAverage = movie.vote_average;
@@ -93,21 +97,6 @@ function genericMovies( movies, container ) {
 }
 
 
-//////////////////////////////////> CAROUSEL HORIZONTAL CARTELERA
-
-let rowMoviesList = document.querySelectorAll('.row-movies');
-
-rowMoviesList.forEach(function(rowMovies) {
-  rowMovies.addEventListener('scroll', function() {
-    if (rowMovies.scrollLeft >= (rowMovies.scrollWidth - rowMovies.clientWidth)) {
-      rowMovies.classList.add('no-fade');
-    } else {
-      rowMovies.classList.remove('no-fade');
-    }
-  });
-});
-
-
 //////////////////////////////////> MOVIES CATEGORIES
 
 async function moviesForCategories() {
@@ -119,16 +108,33 @@ async function moviesForCategories() {
 }
 
 
+//////////////////////////////////> MOVIES TRENDING PREVIEW
+
+async function getMoviesTrendingPreview() {
+  const { data } = await api( 'movie/now_playing' );
+  const movies = data.results;
+
+  createMovies( movies, trendingMoviesPreviewList );
+}
 //////////////////////////////////> MOVIES TRENDING
 
 async function getMoviesTrending() {
   const { data } = await api( 'movie/now_playing' );
   const movies = data.results;
 
-  createMovies( movies, trendingMoviesPreviewList );
+  genericMovies( movies, genericSection );
 }
 
 
+//////////////////////////////////> MOVIES POPULARS PREVIEW
+
+async function getMoviesPopularPreview() {
+  const { data } = await api( 'movie/popular' );
+  const moviesPopular = data.results;
+  console.log({ data, moviesPopular });
+
+  createMovies( moviesPopular, popularMoviesPreviewList );
+}
 //////////////////////////////////> MOVIES POPULARS
 
 async function getMoviesPopular() {
@@ -136,7 +142,7 @@ async function getMoviesPopular() {
   const moviesPopular = data.results;
   console.log({ data, moviesPopular });
 
-  createMovies( moviesPopular, popularMoviesPreviewList );
+  genericMovies( moviesPopular, genericSection );
 }
 
 //////////////////////////////////> MOVIES BY CATEGORY
@@ -168,5 +174,5 @@ async function getMoviesBySearch( query) {
 
 
 moviesForCategories();
-getMoviesTrending();
-getMoviesPopular();
+getMoviesTrendingPreview();
+getMoviesPopularPreview();
