@@ -56,8 +56,11 @@ h1, h2 {
   color: #FFF;
 }
 .name-valor-movie {
+  position: relative;
+  background: var( --bg-secondary );
   padding: 6px 8px;
   min-height: 75px;
+  z-index: 1;
 }
 .btn-main {
   width: 110px;
@@ -97,12 +100,18 @@ h1, h2 {
   width: 230px;
   background-color: var( --bg-secondary );
   color: var( --color-text );
-  border-radius: 0 0 6px 6px;
+  border-radius: 8px;
   padding: 0;
+  overflow: hidden;
   cursor: pointer;
 }
 .movie-img {
   width: 230px;
+  border-radius: 8px 8px 0 0;
+  transition: .6s;
+}
+.movie-img:hover {
+  transform: scale(1.2);
 }
 .section-trending, .section-popular {
   margin-top: 35px;
@@ -112,8 +121,13 @@ h1, h2 {
 /* //////////////////////////////>>>  NAVBAR */
 .navbar {
   background-color: var( --bg-secondary );
+  backdrop-filter: blur( 5px );
 }
-.search-categories .category-container {
+.navbar-nav {
+  color: var( --color-text );
+}
+.search-categories .category-container,
+.categories-list .category-container {
   background: var( --bg-secondary );
   min-width: 120px;
   border-radius: 5px;
@@ -124,7 +138,12 @@ h1, h2 {
   cursor: pointer;
   transition: .3s;
 }
-.search-categories .category-title {
+.search-categories .category-title,
+.categories-list .category-title {
+  display: grid;
+  place-content: center;
+  width: 100%;
+  height: 100%;
   font-family: var( --font-family-noto );
   font-size: 14px;
   font-weight: var( --font-weight-700 );
@@ -132,7 +151,8 @@ h1, h2 {
   margin: 0;
   transition: .3s;
 }
-.search-categories .category-container:hover {
+.search-categories .category-container:hover,
+.categories-list .category-container:hover {
   background: var( --bg-yellow );
   color: var( --bg-secondary );
   transition: .3s;
@@ -156,8 +176,9 @@ h1, h2 {
   background-size: cover;
   background-repeat: no-repeat;
   background-position-x: center;
+  margin-top: 80px;
   width: 100%;
-  height: 484px;
+  height: 550px;
 }
 .datos-portada {
   width: 641px;
@@ -184,7 +205,7 @@ h1, h2 {
   font-size: 20px;
 }
 .section-search-categories {
-  margin-top: 37px;
+  margin-top: 120px;
 }
 
 
@@ -241,7 +262,7 @@ h1, h2 {
   background-position-y: center;
   width: 100%;
   height: 600px;
-  margin-bottom: 60px;
+  margin: 80px 0 60px;
 }
 .movie-principal article {
   position: relative;
@@ -286,13 +307,20 @@ h1, h2 {
   width: 100%;
   background-color: var(--bg-secondary );
   color: var(--color-text );
-  border-radius: 0 0 18px 18px;
+  border-radius: 18px;
   padding: 0;
+  overflow: hidden;
 }
 .contain-movie-general .movie-img {
   max-width: 100%;
   width: inherit;
   border-radius: 18px 18px 0 0;
+}
+
+
+/* //////////////////////////////>>>  SECTION MOVIES POR CATEGORIAS*/
+.categories-list {
+  margin-top: 25px;
 }
 
 

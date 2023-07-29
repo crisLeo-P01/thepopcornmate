@@ -22,7 +22,7 @@ function createMovies ( movies, container ) {
 
     const movieImg = ('https://image.tmdb.org/t/p/w300' + movie.poster_path );
     const titleMovie = movie.title;
-    const voteAverage = movie.vote_average;
+    const voteAverage = movie.vote_average.toFixed(1);
 
     containMovie.innerHTML = `
       <img src=${ movieImg } class="movie-img">
@@ -74,7 +74,7 @@ function genericMovies( movies, container ) {
     containMovie.classList.add( 'contain-movie-general' );
     const movieImg = ('https://image.tmdb.org/t/p/w300' + movie.poster_path );
     const titleMovie = movie.title;
-    const voteAverage = movie.vote_average;
+    const voteAverage = movie.vote_average.toFixed(1);
 
     containMovie.innerHTML = `
       <img src=${ movieImg } class="movie-img">
@@ -116,6 +116,8 @@ async function getMoviesTrendingPreview() {
 
   createMovies( movies, trendingMoviesPreviewList );
 }
+
+
 //////////////////////////////////> MOVIES TRENDING
 
 async function getMoviesTrending() {
@@ -135,6 +137,8 @@ async function getMoviesPopularPreview() {
 
   createMovies( moviesPopular, popularMoviesPreviewList );
 }
+
+
 //////////////////////////////////> MOVIES POPULARS
 
 async function getMoviesPopular() {
@@ -144,6 +148,7 @@ async function getMoviesPopular() {
 
   genericMovies( moviesPopular, genericSection );
 }
+
 
 //////////////////////////////////> MOVIES BY CATEGORY
 
@@ -161,7 +166,7 @@ async function getMoviesByCategory( id ) {
 
 //////////////////////////////////> MOVIES BY SEARCH
 
-async function getMoviesBySearch( query) {
+async function getMoviesBySearch( query ) {
   const { data } = await api( 'search/movie', {
     params: {
       query,
@@ -169,8 +174,57 @@ async function getMoviesBySearch( query) {
   });
   const movies = data.results;
 
-  genericMovies( movies, categoriesMoviesPreviewList )
+  genericMovies( movies, categoriesMoviesPreviewList );
 }
+
+async function getMovieById( id ) {
+  
+  const { data: movie } = await api( 'movie/' + id );
+
+  const movieBackdropImg = 'https://image.tmdb.org/t/p/w500' + movie.backdrop_path;
+  movieBackground.style.background = `
+    linear-gradient(0deg, rgba(19, 14, 24, 0.45) 0%, rgba(19, 14, 24, 0.45) 100%),
+    url(${ movieBackdropImg })
+  `
+  movieBackground.style.backgroundRepeat = 'no-repeat';
+  movieBackground.style.backgroundSize = 'cover';
+  
+  const movieDetailBack = 'https://image.tmdb.org/t/p/w500' + movie.poster_path;
+  console.log(movieDetailBack);
+
+  // Eliminamos la imagen anterior si existe
+  const previousImg = containerMovieImg.querySelector( '.movie-img-tapa' );
+  if( previousImg ) {
+    containerMovieImg.removeChild( previousImg );
+  }
+  
+  const movieDetailImg = document.createElement( 'img' );
+
+  movieDetailImg.classList.add( 'movie-img-tapa' );
+  movieDetailImg.src = `${ movieDetailBack }`
+
+  containerMovieImg.appendChild( movieDetailImg );
+
+  releaseTime.textContent = movie.release_date;
+  runTime.textContent = movie.runtime + 'min';
+  movieDetailTitle.textContent = movie.title;
+  movieDetailDescription.textContent = movie.overview;
+  movieDetailScore.textContent = movie.vote_average.toFixed(1);
+
+  createCategories( movie.genres, movieDetailCategoriesList )
+
+  getRelatedMoviesId( id );
+
+}
+
+async function getRelatedMoviesId( id ) {
+  const { data } = await api( `movie/${ id }/recommendations` );
+  const relatedMovies = data.results;
+
+  createMovies( relatedMovies, relatedMoviesContainer )
+}
+
+
 
 
 moviesForCategories();

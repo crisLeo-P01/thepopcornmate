@@ -25,8 +25,14 @@ const headerCategoryTitle = $('.header-title--categoryView');
 const searchFormInput = $('#searchForm input');
 const searchFormBtn = $('#searchBtn');
 
+const containerMovieImg = $( '.container-movie-img-detail' )
+const movieDetailImg = $( '.movie-img-tapa' )
+
 const trendingBtn = $('.trendingPreview-btn');
 
+const movieBackground = $( '.movie-principal' )
+const releaseTime = $( '.fecha-estreno' )
+const runTime = $( '.movie-duracion' )
 const movieDetailTitle = $('.movieDetail-title');
 const movieDetailDescription = $('.movieDetail-description');
 const movieDetailScore = $('.movieDetail-score');

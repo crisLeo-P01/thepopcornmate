@@ -54,8 +54,8 @@ function trendsPage( selectedTab ) {
 function searchPage() {
   console.log('search!!!');
 
-  mainPortada.classList.add('inactive')
-  searchCategoriesSection.classList.remove('inactive')
+  mainPortada.classList.add('inactive');
+  searchCategoriesSection.classList.remove('inactive');
   trendingPreviewSection.classList.add('inactive');
   popularPreviewSection.classList.add('inactive');
   genericSection.classList.remove('inactive');
@@ -89,7 +89,7 @@ function categoriesPage() {
   console.log('categories!!!');
 
   mainPortada.classList.add('inactive');
-  searchCategoriesSection.classList.add('inactive')
+  searchCategoriesSection.classList.remove('inactive')
   trendingPreviewSection.classList.add('inactive');
   popularPreviewSection.classList.add('inactive');
   genericSection.classList.remove('inactive');
@@ -115,4 +115,8 @@ function movieDetailPage() {
   popularPreviewSection.classList.add('inactive');
   genericSection.classList.add('inactive');
   movieDetailSection.classList.remove('inactive');
+
+  //> [ '#movie', '24567' ]
+  const [_, movieId] = location.hash.split('=');
+  getMovieById( movieId );
 }

@@ -16,7 +16,7 @@
 </head>
 <body>
 
-  <header class="navbar navbar-expand-lg" id="header">
+  <header class="navbar navbar-expand-lg fixed-top" id="header">
     <div class="container">
       <div class="row w-100">
         <div class="col-2">
@@ -133,7 +133,7 @@
     </div>
   </section>
 
-  <section id="genericList" class="section-general-movies mt-5">
+  <section id="genericList" class="section-general-movies">
     <div class="container">
       <h2 class="header-title--categoryView">Movies for categories</h2>
       <article class="row row-categories">
@@ -146,20 +146,18 @@
     <div class="movie-principal">
       <article class="container">
         <div class="row align-items-center">
-          <div class="col-lg-4">
-            <img src="./src/images/avatar.png" class="movie-img-tapa">
-          </div>
+          <div class="col-lg-4 container-movie-img-detail"></div>
           <div class="col-lg-8 d-flex flex-column gap-2">
             <div class="datos">
               <span class="fecha-estreno">30/02/2022</span>
-              <span class="categorias-portada">Crime, Mystery, Thriller</span>
               <span class="movie-duracion">2h 57m</span>
             </div>
-            <span class="movie-title">Evil Dead Rice</span>
-            <span class="movie-detail">A reunion between two estranged sisters gets cut short by the rise of flesh-possessing demons, thrusting them into a primal battle for survival as they face the most nightmarish version of family imaginable.</span>
+            <article class="categories-list d-flex flex-wrap gap-2"></article>
+            <span class="movie-title movieDetail-title">Evil Dead Rice</span>
+            <span class="movie-detail movieDetail-description">A reunion between two estranged sisters gets cut short by the rise of flesh-possessing demons, thrusting them into a primal battle for survival as they face the most nightmarish version of family imaginable.</span>
             <div class="valoration">
               <img src="./src/images/ico-star.png">
-              <span class="puntuacion-number">9.4</span>
+              <span class="puntuacion-number movieDetail-score">9.4</span>
             </div>
             <button class="btn-main">Trailer</button>
           </div>
@@ -168,8 +166,8 @@
     </div>
 
     <div class="container position-relative">
-      <h2>What's Popular</h2>
-      <article class="row row-movies">
+      <h2>Related movies</h2>
+      <article class="row row-movies relatedMovies-scrollContainer">
         <div class="contain-movie">
           <img src="./src/images/avatar.png" class="movie-img">
           <div class="container name-valor-movie">
