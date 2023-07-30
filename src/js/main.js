@@ -177,6 +177,9 @@ async function getMoviesBySearch( query ) {
   genericMovies( movies, categoriesMoviesPreviewList );
 }
 
+
+//////////////////////////////////> MOVIES BY ID
+
 async function getMovieById( id ) {
   
   const { data: movie } = await api( 'movie/' + id );
@@ -223,8 +226,6 @@ async function getRelatedMoviesId( id ) {
 
   createMovies( relatedMovies, relatedMoviesContainer )
 }
-
-
 
 
 moviesForCategories();
