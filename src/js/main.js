@@ -12,36 +12,37 @@ const api = axios.create({
 
 //////////////////////////////////> UTILS
 function createMovies(movies, container) {
-  container.innerHTML = '',
-    movies.forEach((movie) => {
-      const containMovie = document.createElement('div');
-      containMovie.classList.add('contain-movie', 'placeholder-loading');
-      containMovie.addEventListener('click', () => {
-        location.hash = '#movie=' + movie.id;
-      })
+  container.innerHTML = '';
 
-      const movieImg = ('https://image.tmdb.org/t/p/w300' + movie.poster_path);
-      const titleMovie = movie.title;
-      const voteAverage = movie.vote_average.toFixed(1);
+  movies.forEach((movie) => {
+    const containMovie = document.createElement('div');
+    containMovie.classList.add('contain-movie', 'placeholder-loading');
+    containMovie.addEventListener('click', () => {
+      location.hash = '#movie=' + movie.id;
+    })
 
-      containMovie.innerHTML = `
-      <img src=${movieImg} class="movie-img">
-      <div class="container name-valor-movie d-flex align-items-center">
-        <div class="row flex-column">
-          <div class="col-lg-12">
-            <span class="cartel-name">${titleMovie}</span>
-          </div>
-          <div class="col-lg-12">
-            <div class="valoration">
-              <img src="./src/images/ico-star.png">
-              <span class="puntuacion-number">${voteAverage}</span>
-            </div>
+    const movieImg = ('https://image.tmdb.org/t/p/w300' + movie.poster_path);
+    const titleMovie = movie.title;
+    const voteAverage = movie.vote_average.toFixed(1);
+
+    containMovie.innerHTML = `
+    <img src=${movieImg} class="movie-img">
+    <div class="container name-valor-movie d-flex align-items-center">
+      <div class="row flex-column">
+        <div class="col-lg-12">
+          <span class="cartel-name">${titleMovie}</span>
+        </div>
+        <div class="col-lg-12">
+          <div class="valoration">
+            <img src="./src/images/ico-star.png">
+            <span class="puntuacion-number">${voteAverage}</span>
           </div>
         </div>
       </div>
-    `
-      container.appendChild(containMovie);
-    })
+    </div>
+  `
+    container.appendChild(containMovie);
+  })
 }
 
 function createCategories(categories, container) {
