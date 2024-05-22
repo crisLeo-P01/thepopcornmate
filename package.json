@@ -7,5 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "@cristianleo",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "netlify-cli": "^17.23.5"
+  }
 }
