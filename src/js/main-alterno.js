@@ -1,8 +1,12 @@
+
 //////////////////////////////////> AXIOS
 const api = axios.create({
-  baseURL: '/.netlify/functions/',
+  baseURL: 'https://api.themoviedb.org/3/',
   headers: {
-    'Content-Type': 'application/json;charset=utf-8',
+    'Content-Type': 'application.json;charset=utf-8',
+  },
+  params: {
+    'api_key': API_KEY,
   }
 })
 
@@ -97,7 +101,7 @@ function genericMovies(movies, container) {
 //////////////////////////////////> MOVIES CATEGORIES
 
 async function moviesForCategories() {
-  const { data } = await api.get('getMoviesCategories');
+  const { data } = await api('genre/movie/list');
   const categories = data.genres;
   console.log(categories);
 
@@ -108,7 +112,7 @@ async function moviesForCategories() {
 //////////////////////////////////> MOVIES TRENDING PREVIEW
 
 async function getMoviesTrendingPreview() {
-  const { data } = await api.get('getMoviesTrending');
+  const { data } = await api('movie/now_playing');
   const movies = data.results;
 
   createMovies(movies, trendingMoviesPreviewList);
@@ -118,7 +122,7 @@ async function getMoviesTrendingPreview() {
 //////////////////////////////////> MOVIES TRENDING
 
 async function getMoviesTrending() {
-  const { data } = await api.get('getMoviesTrending');
+  const { data } = await api('movie/now_playing');
   const movies = data.results;
 
   genericMovies(movies, genericSection);
@@ -128,7 +132,7 @@ async function getMoviesTrending() {
 //////////////////////////////////> MOVIES POPULARS PREVIEW
 
 async function getMoviesPopularPreview() {
-  const { data } = await api.get('getMoviesPopular');
+  const { data } = await api('movie/popular');
   const moviesPopular = data.results;
   console.log({ data, moviesPopular });
 
@@ -139,7 +143,7 @@ async function getMoviesPopularPreview() {
 //////////////////////////////////> MOVIES POPULARS
 
 async function getMoviesPopular() {
-  const { data } = await api.get('getMoviesPopular');
+  const { data } = await api('movie/popular');
   const moviesPopular = data.results;
   console.log({ data, moviesPopular });
 
@@ -150,7 +154,11 @@ async function getMoviesPopular() {
 //////////////////////////////////> MOVIES BY CATEGORY
 
 async function getMoviesByCategory(id) {
-  const { data } = await api.get(`getMoviesByCategory?categoryId=${id}`);
+  const { data } = await api('discover/movie', {
+    params: {
+      with_genres: id,
+    }
+  });
   const movies = data.results;
 
   genericMovies(movies, categoriesMoviesPreviewList)
@@ -160,7 +168,11 @@ async function getMoviesByCategory(id) {
 //////////////////////////////////> MOVIES BY SEARCH
 
 async function getMoviesBySearch(query) {
-  const { data } = await api.get(`searchMovies?query=${query}`);
+  const { data } = await api('search/movie', {
+    params: {
+      query,
+    }
+  });
   const movies = data.results;
 
   genericMovies(movies, categoriesMoviesPreviewList);
@@ -170,7 +182,8 @@ async function getMoviesBySearch(query) {
 //////////////////////////////////> MOVIES BY ID
 
 async function getMovieById(id) {
-  const { data: movie } = await api.get(`getMovieById?id=${id}`);
+
+  const { data: movie } = await api('movie/' + id);
 
   const movieBackdropImg = 'https://image.tmdb.org/t/p/w500' + movie.backdrop_path;
   movieBackground.style.background = `
@@ -205,10 +218,11 @@ async function getMovieById(id) {
   createCategories(movie.genres, movieDetailCategoriesList)
 
   getRelatedMoviesId(id);
+
 }
 
 async function getRelatedMoviesId(id) {
-  const { data } = await api.get(`getRelatedMovies?id=${id}`);
+  const { data } = await api(`movie/${id}/recommendations`);
   const relatedMovies = data.results;
 
   createMovies(relatedMovies, relatedMoviesContainer)
